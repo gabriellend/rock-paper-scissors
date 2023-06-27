@@ -1,3 +1,8 @@
+// ELEMENT SELECTORS
+const choices = document.querySelectorAll("button");
+const results = document.querySelector(".results");
+
+// FUNCTIONS
 const getComputerChoice = () => {
   const randNum = Math.ceil(Math.random() * 3);
 
@@ -52,20 +57,20 @@ const playRound = (playerSelection, computerSelection) => {
     (playerSelection === "paper" && computerSelection === "scissors");
 
   if (playerWins) {
-    console.log(
+    const winTextNode = document.createTextNode(
       `You win this round! ${playerSelection} beats ${computerSelection}.`
     );
-    return "Player wins";
+    results.appendChild(winTextNode);
   } else if (computerWins) {
-    console.log(
+    const loseTextNode = document.createTextNode(
       `You lose this round! ${computerSelection} beats ${playerSelection}.`
     );
-    return "Computer wins";
+    results.appendChild(loseTextNode);
   } else {
-    console.log(
+    const tieTextNode = document.createTextNode(
       `${playerSelection} and ${computerSelection}. It's a tie this round!`
     );
-    return "It's a tie";
+    results.appendChild(tieTextNode);
   }
 };
 
@@ -109,4 +114,15 @@ const game = () => {
   }
 };
 
-game();
+// game();
+
+choices.forEach((choice) =>
+  choice.addEventListener("click", (e) => {
+    results.textContent = "";
+
+    let computerChoice = getComputerChoice();
+    let playerChoice = e.target.innerText;
+
+    playRound(playerChoice, computerChoice);
+  })
+);
