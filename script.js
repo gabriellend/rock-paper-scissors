@@ -1,6 +1,6 @@
 // ELEMENT SELECTORS
 const buttons = document.querySelectorAll("button");
-const roundResult = document.querySelector(".round-result");
+const roundResult = document.querySelector(".round-result h2");
 const scoreLabels = document.querySelectorAll(".score-label");
 
 // FUNCTIONS
@@ -55,9 +55,7 @@ const showScores = (playerScore, computerScore) => {
 };
 
 const showRoundResult = (result) => {
-  const resultNode = document.createElement("h2");
-  resultNode.innerText = result;
-  roundResult.appendChild(resultNode);
+  roundResult.innerText = result;
 };
 
 const playRound = (playerSelection, computerSelection) => {
