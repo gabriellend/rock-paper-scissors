@@ -103,12 +103,21 @@ const game = (e) => {
     playerScore++;
   } else if (outcome === "Computer wins") {
     computerScore++;
-  } else {
-    playerScore++;
-    computerScore++;
   }
 
   showScores(playerScore, computerScore);
+
+  if (playerScore === 5 || computerScore === 5) {
+    roundResult.textContent = "";
+    buttons.forEach((button) => (button.disabled = true));
+    if (playerScore === 5 && computerScore < 5) {
+      showRoundResult("You win the game! Refresh to play again!");
+    } else if (computerScore === 5 && playerScore < 5) {
+      showRoundResult("You lose the game! Refresh to play again!");
+    } else {
+      showRoundResult("It's a tie! Refresh to play again!");
+    }
+  }
 };
 
 buttons.forEach((button) => button.addEventListener("click", game));
