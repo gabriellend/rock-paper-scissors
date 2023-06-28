@@ -1,6 +1,6 @@
 // ELEMENT SELECTORS
 const choices = document.querySelectorAll("button");
-const results = document.querySelector(".results");
+const roundResult = document.querySelector(".round-result");
 
 // FUNCTIONS
 const getComputerChoice = () => {
@@ -44,6 +44,12 @@ const getPlayerChoice = () => {
   return playerChoice;
 };
 
+const showRoundResult = (result) => {
+  const resultNode = document.createElement("h2");
+  resultNode.innerText = result;
+  roundResult.appendChild(resultNode);
+};
+
 const playRound = (playerSelection, computerSelection) => {
   playerSelection = playerSelection.toLowerCase();
 
@@ -56,22 +62,16 @@ const playRound = (playerSelection, computerSelection) => {
     (playerSelection === "rock" && computerSelection === "paper") ||
     (playerSelection === "paper" && computerSelection === "scissors");
 
+  let result;
   if (playerWins) {
-    const winTextNode = document.createTextNode(
-      `You win this round! ${playerSelection} beats ${computerSelection}.`
-    );
-    results.appendChild(winTextNode);
+    result = `You chose ${playerSelection} and the computer chose ${computerSelection}, you win!`;
   } else if (computerWins) {
-    const loseTextNode = document.createTextNode(
-      `You lose this round! ${computerSelection} beats ${playerSelection}.`
-    );
-    results.appendChild(loseTextNode);
+    result = `You chose ${computerSelection} and the computer chose ${playerSelection}, you lose!`;
   } else {
-    const tieTextNode = document.createTextNode(
-      `${playerSelection} and ${computerSelection}. It's a tie this round!`
-    );
-    results.appendChild(tieTextNode);
+    result = `You both chose ${playerSelection}, it's a tie!`;
   }
+
+  showRoundResult(result);
 };
 
 const game = () => {
