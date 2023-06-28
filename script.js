@@ -20,22 +20,26 @@ const getComputerChoice = () => {
   return choices[randIndex];
 };
 
+const updateScoreElements = (score, playerScoreText, computerScoreText) => {
+  score.innerText = "";
+
+  if (score.className.includes("player-score")) {
+    score.appendChild(playerScoreText);
+  } else if (score.className.includes("computer-score")) {
+    score.appendChild(computerScoreText);
+  }
+};
+
 const showScores = (playerScore, computerScore) => {
   const playerScoreText = document.createTextNode(" " + playerScore);
   const computerScoreText = document.createTextNode(" " + computerScore);
 
-  scores.forEach((score) => {
-    score.innerText = "";
+  scores.forEach((score) =>
+    updateScoreElements(score, playerScoreText, computerScoreText)
+  );
 
-    if (score.className.includes("player-score")) {
-      score.appendChild(playerScoreText);
-    } else if (score.className.includes("computer-score")) {
-      score.appendChild(computerScoreText);
-    }
-
-    scoreLabels.forEach((label) => {
-      label.style.display = "inline-block";
-    });
+  scoreLabels.forEach((label) => {
+    label.style.display = "inline-block";
   });
 };
 
