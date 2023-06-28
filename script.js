@@ -65,7 +65,7 @@ const playRound = (playerSelection, computerSelection) => {
     resultMessage = `You chose ${playerSelection} and the computer chose ${computerSelection}, you win!`;
     result = "Player wins";
   } else if (computerWins) {
-    resultMessage = `You chose ${computerSelection} and the computer chose ${playerSelection}, you lose!`;
+    resultMessage = `You chose ${playerSelection} and the computer chose ${computerSelection}, you lose!`;
     result = "Computer wins";
   } else {
     resultMessage = `You both chose ${playerSelection}, it's a tie!`;
