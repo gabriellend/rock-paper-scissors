@@ -3,6 +3,7 @@ const buttons = document.querySelectorAll("button");
 const roundResult = document.querySelector(".round-result h2");
 const scoreLabels = document.querySelectorAll(".score-label");
 const scores = document.querySelectorAll(".score");
+const banner = document.querySelector("h1");
 
 // FUNCTIONS
 const getComputerChoice = () => {
@@ -40,6 +41,10 @@ const showScores = (playerScore, computerScore) => {
 
 const showRoundResult = (result) => {
   roundResult.innerText = result;
+};
+
+const showGameResult = (result) => {
+  banner.innerText = result;
 };
 
 const playRound = (playerSelection, computerSelection) => {
@@ -91,15 +96,27 @@ const game = (e) => {
 
   if (playerScore === 5 || computerScore === 5) {
     roundResult.textContent = "";
-    buttons.forEach((button) => (button.disabled = true));
+    banner.textContent = "";
+    scoreLabels.forEach((label) => {
+      label.innerText = "";
+    });
+    buttons.forEach((button) => {
+      button.disabled = true;
+      button.style.display = "none";
+    });
+
+    let result;
     if (playerScore === 5 && computerScore < 5) {
-      showRoundResult("You win the game! Refresh to play again!");
+      result = "You win the game! Refresh to play again!";
     } else if (computerScore === 5 && playerScore < 5) {
-      showRoundResult("You lose the game! Refresh to play again!");
+      result = "You lose the game! Refresh to play again!";
     } else {
-      showRoundResult("It's a tie! Refresh to play again!");
+      result = "It's a tie! Refresh to play again!";
     }
+
+    showGameResult(result);
   }
 };
 
+// EVENT LISTENERS
 buttons.forEach((button) => button.addEventListener("click", game));
