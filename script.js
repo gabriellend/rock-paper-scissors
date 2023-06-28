@@ -114,15 +114,16 @@ const game = () => {
   }
 };
 
+const prepareToPlayRound = (e) => {
+  roundResult.textContent = "";
+
+  let computerChoice = getComputerChoice();
+  let playerChoice = e.target.innerText;
+
+  playRound(playerChoice, computerChoice);
+};
 // game();
 
 choices.forEach((choice) =>
-  choice.addEventListener("click", (e) => {
-    results.textContent = "";
-
-    let computerChoice = getComputerChoice();
-    let playerChoice = e.target.innerText;
-
-    playRound(playerChoice, computerChoice);
-  })
+  choice.addEventListener("click", prepareToPlayRound)
 );
