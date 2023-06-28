@@ -98,16 +98,16 @@ const game = (e) => {
       button.style.display = "none";
     });
 
-    let result;
+    let resultMessage;
     if (playerScore === 5 && computerScore < 5) {
-      result = "You win the game! Refresh to play again!";
+      resultMessage = "You win the game! Refresh to play again!";
     } else if (computerScore === 5 && playerScore < 5) {
-      result = "You lose the game! Refresh to play again!";
+      resultMessage = "You lose the game! Refresh to play again!";
     } else {
-      result = "It's a tie! Refresh to play again!";
+      resultMessage = "It's a tie! Refresh to play again!";
     }
 
-    showGameResult(result);
+    showGameResult(resultMessage);
   }
 };
 
