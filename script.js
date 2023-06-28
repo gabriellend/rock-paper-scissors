@@ -1,5 +1,5 @@
 // ELEMENT SELECTORS
-const choices = document.querySelectorAll("button");
+const buttons = document.querySelectorAll("button");
 const roundResult = document.querySelector(".round-result");
 
 // FUNCTIONS
@@ -124,6 +124,4 @@ const prepareToPlayRound = (e) => {
 };
 // game();
 
-choices.forEach((choice) =>
-  choice.addEventListener("click", prepareToPlayRound)
-);
+buttons.forEach((button) => button.addEventListener("click", game));
