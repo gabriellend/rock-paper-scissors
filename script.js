@@ -62,16 +62,21 @@ const playRound = (playerSelection, computerSelection) => {
     (playerSelection === "rock" && computerSelection === "paper") ||
     (playerSelection === "paper" && computerSelection === "scissors");
 
+  let resultMessage;
   let result;
   if (playerWins) {
-    result = `You chose ${playerSelection} and the computer chose ${computerSelection}, you win!`;
+    resultMessage = `You chose ${playerSelection} and the computer chose ${computerSelection}, you win!`;
+    result = "Player wins";
   } else if (computerWins) {
-    result = `You chose ${computerSelection} and the computer chose ${playerSelection}, you lose!`;
+    resultMessage = `You chose ${computerSelection} and the computer chose ${playerSelection}, you lose!`;
+    result = "Computer wins";
   } else {
-    result = `You both chose ${playerSelection}, it's a tie!`;
+    resultMessage = `You both chose ${playerSelection}, it's a tie!`;
+    result = "Tie";
   }
 
-  showRoundResult(result);
+  showRoundResult(resultMessage);
+  return result;
 };
 
 const game = () => {
@@ -120,7 +125,15 @@ const prepareToPlayRound = (e) => {
   let computerChoice = getComputerChoice();
   let playerChoice = e.target.innerText;
 
-  playRound(playerChoice, computerChoice);
+  let outcome = playRound(playerChoice, computerChoice);
+  if (outcome === "Player wins") {
+    playerScore++;
+  } else if (outcome === "Computer wins") {
+    computerScore++;
+  } else {
+    playerScore++;
+    computerScore++;
+  }
 };
 // game();
 
