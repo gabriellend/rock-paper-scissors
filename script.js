@@ -7,16 +7,6 @@ const scoreLabels = document.querySelectorAll(".score-label");
 const getComputerChoice = () => {
   const randNum = Math.ceil(Math.random() * 3);
 
-  // This does the same thing as the switch statement below
-  // just with an if/else statement
-  // if (randNum === 1) {
-  //   return "rock";
-  // } else if (randNum === 2) {
-  //   return "paper";
-  // } else {
-  //   return "scissors";
-  // }
-
   switch (randNum) {
     case 1:
       return "rock";
@@ -99,46 +89,8 @@ const playRound = (playerSelection, computerSelection) => {
   return result;
 };
 
-const game = () => {
-  let playerTotalWins = 0;
-  let computerTotalWins = 0;
-  let ties = 0;
-
-  for (let round = 1; round <= 5; round++) {
-    let computerChoice = getComputerChoice();
-    let playerChoice = getPlayerChoice();
-    // If player hits cancel
-    if (!playerChoice) {
-      console.log("Game canceled");
-      return;
-    }
-
-    let outcome = playRound(playerChoice, computerChoice);
-    if (outcome === "Player wins") {
-      playerTotalWins++;
-    } else if (outcome === "Computer wins") {
-      computerTotalWins++;
-    } else {
-      ties++;
-    }
-  }
-
-  // The above for loop can also be written as a while loop:
-  // let round = 1;
-  // while (round <= 5) {
-  //  ...code to execute
-  //  round ++
-  //}
-
-  if (playerTotalWins > computerTotalWins) {
-    console.log("You win the game! Refresh to play again!");
-  } else if (computerTotalWins > playerTotalWins) {
-    console.log("You lose the game! Refresh to play again!");
-  } else {
-    console.log("The game is a tie! Refresh to play again!");
-  }
-};
-
+let playerScore = 0;
+let computerScore = 0;
 
 const game = (e) => {
   roundResult.textContent = "";
@@ -158,6 +110,5 @@ const game = (e) => {
 
   showScores(playerScore, computerScore);
 };
-// game();
 
 buttons.forEach((button) => button.addEventListener("click", game));
