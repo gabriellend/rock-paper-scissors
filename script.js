@@ -2,6 +2,7 @@
 const buttons = document.querySelectorAll("button");
 const roundResult = document.querySelector(".round-result h2");
 const scoreLabels = document.querySelectorAll(".score-label");
+const scores = document.querySelectorAll(".score");
 
 // FUNCTIONS
 const getComputerChoice = () => {
@@ -18,39 +19,22 @@ const getComputerChoice = () => {
   }
 };
 
-const getPlayerChoice = () => {
-  let playerChoice = prompt("Enter 'rock', 'paper', or 'scissors' to play.");
-  // If player hits cancel
-  if (playerChoice === null) {
-    return;
-  }
-  while (playerChoice === "") {
-    playerChoice = prompt("Enter 'rock', 'paper', or 'scissors' to play.");
-    // If player hits cancel
-    if (playerChoice === null) {
-      return;
-    }
-  }
-
-  return playerChoice;
-};
-
 const showScores = (playerScore, computerScore) => {
-  const playerScoreText = document.createTextNode(`Your score: ${playerScore}`);
-  const computerScoreText = document.createTextNode(
-    `Computer score: ${computerScore}`
-  );
+  const playerScoreText = document.createTextNode(" " + playerScore);
+  const computerScoreText = document.createTextNode(" " + computerScore);
 
-  scoreLabels.forEach((label) => {
-    label.innerText = "";
+  scores.forEach((score) => {
+    score.innerText = "";
 
-    if (label.className.includes("player-score")) {
-      label.appendChild(playerScoreText);
-    } else if (label.className.includes("computer-score")) {
-      label.appendChild(computerScoreText);
+    if (score.className.includes("player-score")) {
+      score.appendChild(playerScoreText);
+    } else if (score.className.includes("computer-score")) {
+      score.appendChild(computerScoreText);
     }
 
-    label.style.display = "inline-block";
+    scoreLabels.forEach((label) => {
+      label.style.display = "inline-block";
+    });
   });
 };
 
