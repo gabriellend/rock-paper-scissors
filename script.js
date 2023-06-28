@@ -5,9 +5,16 @@ const scoreLabels = document.querySelectorAll(".score-label");
 const scores = document.querySelectorAll(".score");
 const banner = document.querySelector("h1");
 
+// CONSTANTS
+const ROCK = "rock";
+const PAPER = "paper";
+const SCISSORS = "scissors";
+const PLAYER_WINS = "Player wins";
+const COMPUTER_WINS = "Computer wins";
+
 // FUNCTIONS
 const getComputerChoice = () => {
-  const choices = ["rock", "paper", "scissors"];
+  const choices = [ROCK, PAPER, SCISSORS];
   const randIndex = Math.ceil(Math.random() * 3);
 
   return choices[randIndex];
@@ -44,22 +51,22 @@ const playRound = (playerSelection, computerSelection) => {
   playerSelection = playerSelection.toLowerCase();
 
   const playerWins =
-    (playerSelection === "rock" && computerSelection === "scissors") ||
-    (playerSelection === "paper" && computerSelection === "rock") ||
-    (playerSelection === "scissors" && computerSelection === "paper");
+    (playerSelection === ROCK && computerSelection === SCISSORS) ||
+    (playerSelection === PAPER && computerSelection === ROCK) ||
+    (playerSelection === SCISSORS && computerSelection === PAPER);
   const computerWins =
-    (playerSelection === "scissors" && computerSelection === "rock") ||
-    (playerSelection === "rock" && computerSelection === "paper") ||
-    (playerSelection === "paper" && computerSelection === "scissors");
+    (playerSelection === SCISSORS && computerSelection === ROCK) ||
+    (playerSelection === ROCK && computerSelection === PAPER) ||
+    (playerSelection === PAPER && computerSelection === SCISSORS);
 
   let resultMessage;
   let result;
   if (playerWins) {
     resultMessage = `You chose ${playerSelection} and the computer chose ${computerSelection}, you win!`;
-    result = "Player wins";
+    result = PLAYER_WINS;
   } else if (computerWins) {
     resultMessage = `You chose ${playerSelection} and the computer chose ${computerSelection}, you lose!`;
-    result = "Computer wins";
+    result = COMPUTER_WINS;
   } else {
     resultMessage = `You both chose ${playerSelection}, it's a tie!`;
     result = "Tie";
@@ -79,9 +86,9 @@ const game = (e) => {
   let playerChoice = e.target.innerText;
 
   let outcome = playRound(playerChoice, computerChoice);
-  if (outcome === "Player wins") {
+  if (outcome === PLAYER_WINS) {
     playerScore++;
-  } else if (outcome === "Computer wins") {
+  } else if (outcome === COMPUTER_WINS) {
     computerScore++;
   }
 
