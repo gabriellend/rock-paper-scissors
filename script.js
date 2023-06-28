@@ -76,6 +76,33 @@ const playRound = (playerSelection, computerSelection) => {
   return result;
 };
 
+const clearScreen = () => {
+  roundResult.textContent = "";
+  banner.textContent = "";
+  scoreLabels.forEach((label) => {
+    label.style.display = "none";
+  });
+  buttons.forEach((button) => {
+    button.disabled = true;
+    button.style.display = "none";
+  });
+};
+
+const handleGameOver = (playerScore, computerScore) => {
+  clearScreen();
+
+  let resultMessage;
+  if (playerScore === 5 && computerScore < 5) {
+    resultMessage = "You win the game! Refresh to play again!";
+  } else if (computerScore === 5 && playerScore < 5) {
+    resultMessage = "You lose the game! Refresh to play again!";
+  } else {
+    resultMessage = "It's a tie! Refresh to play again!";
+  }
+
+  showGameResult(resultMessage);
+};
+
 let playerScore = 0;
 let computerScore = 0;
 
@@ -95,26 +122,7 @@ const game = (e) => {
   showScores(playerScore, computerScore);
 
   if (playerScore === 5 || computerScore === 5) {
-    roundResult.textContent = "";
-    banner.textContent = "";
-    scoreLabels.forEach((label) => {
-      label.innerText = "";
-    });
-    buttons.forEach((button) => {
-      button.disabled = true;
-      button.style.display = "none";
-    });
-
-    let resultMessage;
-    if (playerScore === 5 && computerScore < 5) {
-      resultMessage = "You win the game! Refresh to play again!";
-    } else if (computerScore === 5 && playerScore < 5) {
-      resultMessage = "You lose the game! Refresh to play again!";
-    } else {
-      resultMessage = "It's a tie! Refresh to play again!";
-    }
-
-    showGameResult(resultMessage);
+    handleGameOver(playerScore, computerScore);
   }
 };
 
