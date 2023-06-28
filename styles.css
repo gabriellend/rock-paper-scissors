@@ -1,9 +1,8 @@
-* {
-  border: solid 1px black;
-}
-
 html,
 body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -11,11 +10,17 @@ body {
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
 
+h1 {
+  margin: 5% 3% 3% 3%;
+}
+
 .button-div {
   display: flex;
   justify-content: space-between;
-  width: 50%;
+  min-width: 50%;
   margin: auto;
+  margin-bottom: 3%;
+  gap: 10px;
 }
 
 button {
@@ -53,6 +58,16 @@ button {
   background-color: lightcoral;
 }
 
+.round-result {
+  margin: 0 3% 3% 3%;
+}
+.scores {
+  display: flex;
+  justify-content: space-around;
+  min-width: 50%;
+  gap: 40px;
+  margin: auto;
+}
 .score-label {
   display: none;
 }
