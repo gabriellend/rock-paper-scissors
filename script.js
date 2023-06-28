@@ -1,6 +1,7 @@
 // ELEMENT SELECTORS
 const buttons = document.querySelectorAll("button");
 const roundResult = document.querySelector(".round-result");
+const scoreLabels = document.querySelectorAll(".score-label");
 
 // FUNCTIONS
 const getComputerChoice = () => {
@@ -42,6 +43,25 @@ const getPlayerChoice = () => {
   }
 
   return playerChoice;
+};
+
+const showScores = (playerScore, computerScore) => {
+  const playerScoreText = document.createTextNode(`Your score: ${playerScore}`);
+  const computerScoreText = document.createTextNode(
+    `Computer score: ${computerScore}`
+  );
+
+  scoreLabels.forEach((label) => {
+    label.innerText = "";
+
+    if (label.className.includes("player-score")) {
+      label.appendChild(playerScoreText);
+    } else if (label.className.includes("computer-score")) {
+      label.appendChild(computerScoreText);
+    }
+
+    label.style.display = "inline-block";
+  });
 };
 
 const showRoundResult = (result) => {
@@ -119,7 +139,8 @@ const game = () => {
   }
 };
 
-const prepareToPlayRound = (e) => {
+
+const game = (e) => {
   roundResult.textContent = "";
 
   let computerChoice = getComputerChoice();
@@ -134,6 +155,8 @@ const prepareToPlayRound = (e) => {
     playerScore++;
     computerScore++;
   }
+
+  showScores(playerScore, computerScore);
 };
 // game();
 
