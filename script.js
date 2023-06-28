@@ -7,17 +7,10 @@ const banner = document.querySelector("h1");
 
 // FUNCTIONS
 const getComputerChoice = () => {
-  const randNum = Math.ceil(Math.random() * 3);
+  const choices = ["rock", "paper", "scissors"];
+  const randIndex = Math.ceil(Math.random() * 3);
 
-  switch (randNum) {
-    case 1:
-      return "rock";
-    case 2:
-      return "paper";
-    case 3:
-    default:
-      return "scissors";
-  }
+  return choices[randIndex];
 };
 
 const showScores = (playerScore, computerScore) => {
