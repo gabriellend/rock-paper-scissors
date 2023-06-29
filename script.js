@@ -5,12 +5,15 @@ const scoreLabels = document.querySelectorAll(".score-label");
 const scores = document.querySelectorAll(".score");
 const banner = document.querySelector("h1");
 
-// CONSTANTS
+// VARIABLES
 const ROCK = "rock";
 const PAPER = "paper";
 const SCISSORS = "scissors";
 const PLAYER_WINS = "Player wins";
 const COMPUTER_WINS = "Computer wins";
+
+let playerScore = 0;
+let computerScore = 0;
 
 // FUNCTIONS
 const getComputerChoice = () => {
@@ -106,9 +109,6 @@ const handleGameOver = (playerScore, computerScore) => {
 
   showGameResult(resultMessage);
 };
-
-let playerScore = 0;
-let computerScore = 0;
 
 const game = (e) => {
   roundResult.textContent = "";
